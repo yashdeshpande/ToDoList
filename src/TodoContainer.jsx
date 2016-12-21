@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import TodoItem from './TodoItem.jsx';
+import AddButton from './AddButton.jsx';
 
 export default class TodoContainer extends Component {
   constructor(props) {
     super(props);
     this.changeCheckBoxState = this.changeCheckBoxState.bind(this);
+    this.createItems = this.createItems.bind(this);
 
     this.state={
       todoItems: [{
@@ -14,7 +16,7 @@ export default class TodoContainer extends Component {
       },{
         title: 'Wash Dishes',
         text: 'Do em',
-        checked: true
+        checked: false
       },{
         title: 'Wash Dishes',
         text: 'Do em',
@@ -22,7 +24,7 @@ export default class TodoContainer extends Component {
       },{
         title: 'Wash Dishes',
         text: 'Do em',
-        checked: true
+        checked: false
       },{
         title: 'Wash Dishes',
         text: 'Do em',
@@ -33,15 +35,23 @@ export default class TodoContainer extends Component {
 
   changeCheckBoxState(index){
     var self = this;
-    var list = self.state.todoItems;
-    list[index].checked = !list[index].checked;
+
     return function(){
+      var list = self.state.todoItems;
+      list[index].checked = !list[index].checked;
       self.setState({
         todoItems: list
       });
     }
   }
+  createAddButton(){
+    var me = this;
+    return (
+      <AddButton
 
+        />
+    )
+  }
   createItems(){
     var me = this;
     return this.state.todoItems.map(function(element,index){
@@ -49,7 +59,8 @@ export default class TodoContainer extends Component {
           title = {element.title}
           text = {element.text}
           checked = {element.checked}
-
+          key={index}
+          changeCheckBoxState = {me.changeCheckBoxState(index)}
         />
     });
   }
@@ -58,6 +69,7 @@ export default class TodoContainer extends Component {
     return (
       <div>
         {this.createItems()}
+        {this.createAddButton()}
       </div>
     )
 

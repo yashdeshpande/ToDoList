@@ -18,6 +18,26 @@
   font-size: large;
 }
 
+.Add-button{
+  background: #f1c40f;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border:none;
+}
+
+.Todo-item-title{
+  /*add Todo Item Title Class here.*/
+}
+
+
+.Add-button-plus-sign{
+  margin:auto;
+  font-size:20px;
+  font-weight:100;
+}
+
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
