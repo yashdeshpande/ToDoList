@@ -43,7 +43,7 @@ getTitleClass(){
     if(this.state.enlarged){
       return(
         <Row className="Todo-item-enlarged">
-          <Col className ="Show-button-container" xs={1} md={1} lg={1} >
+          <Col xs={1} md={1} lg={1} >
             <Button bsClass="Show-button" bsStyle="info" bsSize="small" onClick={this.reverseStateFunction}>
               <Glyphicon
                 glyph="eye-close"
