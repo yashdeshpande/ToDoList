@@ -13,28 +13,12 @@ export default class TodoContainer extends Component {
     this.reverseStateFunction = this.reverseStateFunction.bind(this);
     this.addNewTodoItem = this.addNewTodoItem.bind(this);
     this.deleteTodoItem = this.deleteTodoItem.bind(this);
+    this.onTodoChange = this.onTodoChange.bind(this);
+    if(!localStorage.todoItems){
+      localStorage.todoItems = '[]'
+    }
     this.state={
-      todoItems: [{
-        title: 'Wash Dishes',
-        text: 'Do em',
-        checked: true
-      },{
-        title: 'Clean Living Room',
-        text: 'Do em',
-        checked: false
-      },{
-        title: 'Hunt for Jobs',
-        text: 'Do em',
-        checked: true
-      },{
-        title: 'Paint the car',
-        text: 'Do em',
-        checked: false
-      },{
-        title: 'Compose a new symphony',
-        text: 'Do em',
-        checked: true
-      }],
+      todoItems: JSON.parse(localStorage.todoItems),
       showAddWindow: false
     };
   }
@@ -59,6 +43,7 @@ export default class TodoContainer extends Component {
         checked: false
       }
     );
+    localStorage.todoItems = JSON.stringify(_todoItems);
     this.setState(
       {
         todoItems: _todoItems,
@@ -71,6 +56,7 @@ export default class TodoContainer extends Component {
     var _todoItems = this.state.todoItems;
     _todoItems.splice(index,1);
     console.log(_todoItems);
+    localStorage.todoItems = JSON.stringify(_todoItems);
     this.setState({todoItems: _todoItems});
   }
 
@@ -87,15 +73,26 @@ export default class TodoContainer extends Component {
     this.setState({showAddWindow: !this.state.showAddWindow});
   }
   createAddButton(){
-    var me = this;
     return (
       <AddButton
         reverseStateFunction = {this.reverseStateFunction}
         />
     );
   }
+  onTodoChange(index,title,text){
+    var _todoItems = this.state.todoItems;
+    _todoItems[index].title=title;
+    _todoItems[index].text=text
+    console.log(_todoItems);
+    localStorage.todoItems = JSON.stringify(_todoItems);
+    this.setState({
+      todoItems: _todoItems
+    })
+
+  }
   createTodoItems(){
     var me = this;
+    if(this.state.todoItems){
     return this.state.todoItems.map(function(element,index){
       return <TodoItem
           title = {element.title}
@@ -105,8 +102,17 @@ export default class TodoContainer extends Component {
           key={index}
           index={index}
           changeCheckBoxState = {me.changeCheckBoxState(index)}
+          onTodoChange = {me.onTodoChange}
         />
     });
+  } else {
+    return (
+      <div>
+        <p>Nothing to render!</p>
+      </div>
+
+    )
+  }
   }
 
   createItems(){
