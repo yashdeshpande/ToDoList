@@ -37,6 +37,21 @@
   font-weight:100;
 }
 
+.Delete-button{
+  background: #f1c40f;
+  width:32px;
+  height:32px;
+  border-radius: 50%;
+  border:none;
+}
+
+.Check-box{
+  background: #f1c40f;
+  border-radius: 50%;
+  height:32px;
+  width:32px;
+}
+
 
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
