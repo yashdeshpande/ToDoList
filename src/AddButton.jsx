@@ -12,12 +12,14 @@ export default class AddButton extends Component{
   render(){
 
     return(
-      <Button className="Add-button" bsStyle="info" onClick={this.props.reverseStateFunction}>
-        <Glyphicon
-          glyph="plus"
-          className="Add-button-plus-sign"
-          />
-      </Button>
+      <div className="Add-button-container row">
+        <Button className="Add-button" bsStyle="info" onClick={this.props.reverseStateFunction}>
+          <Glyphicon
+            glyph="plus"
+            className="Add-button-plus-sign"
+            />
+        </Button>
+      </div>
     )
   }
 

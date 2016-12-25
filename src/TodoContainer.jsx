@@ -29,6 +29,7 @@ export default class TodoContainer extends Component {
     return function(){
       var list = self.state.todoItems;
       list[index].checked = !list[index].checked;
+      localStorage.todoItems = JSON.stringify(list);
       self.setState({
         todoItems: list
       });
@@ -52,10 +53,8 @@ export default class TodoContainer extends Component {
     );
   }
   deleteTodoItem(index){
-    console.log(index);
     var _todoItems = this.state.todoItems;
     _todoItems.splice(index,1);
-    console.log(_todoItems);
     localStorage.todoItems = JSON.stringify(_todoItems);
     this.setState({todoItems: _todoItems});
   }
@@ -129,7 +128,7 @@ export default class TodoContainer extends Component {
 
   render(){
     return (
-      <div>
+      <div className="Todo-container">
           {this.createItems()}
       </div>
     )

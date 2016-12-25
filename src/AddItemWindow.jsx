@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import {FormControl,Button,Glyphicon} from 'react-bootstrap';
+import {FormControl,Button,Glyphicon,Col,Row} from 'react-bootstrap';
 
 export default class AddItemWindow extends Component {
 
@@ -21,14 +21,17 @@ export default class AddItemWindow extends Component {
 
   render(){
     return (
-      <div>
-        <div>
-          <Button onClick={this.props.reverseStateFunction}>
-            <Glyphicon
-              glyph = "remove"
-              />
-          </Button>
-        </div>
+      <div className="Add-item-window">
+        <Row className="Add-item-menu-bar">
+          <Col xs={2} md={2} lg={2} xsOffset={10} mdOffset={10} lgOffset={10}>
+            <Button className="Close-button" onClick={this.props.reverseStateFunction}>
+              <Glyphicon
+                glyph = "remove"
+                className="Close-glyph"
+                />
+            </Button>
+          </Col>
+        </Row>
         <div>
           <form>
             <FormControl
@@ -38,12 +41,15 @@ export default class AddItemWindow extends Component {
             <FormControl
               placeholder="Description"
               ref='descriptionValue'
+              className="Add-description-text"
               />
-            <Button onClick={this.addNewTodoItemTrigger}>
-                <Glyphicon
-                  glyph = "plus"
-                  />
-            </Button>
+            <Col xs={12} md={12} lg={12} className="Submit-button-container">
+              <Button className="Submit-button" onClick={this.addNewTodoItemTrigger}>
+                  <Glyphicon
+                    glyph = "plus"
+                    />
+              </Button>
+            </Col>
 
           </form>
 
