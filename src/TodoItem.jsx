@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {Row,Col,Button,Glyphicon,Checkbox} from 'react-bootstrap';
-import {ContentEditable} from 'react-contenteditable';
 import ReactDOM from 'react-dom';
 
 
